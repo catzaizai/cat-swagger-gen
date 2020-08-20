@@ -1,0 +1,21 @@
+{{each references reference}}import {{reference.className}} from '{{reference.relativePath}}';
+{{/each}}
+
+{{each services service}}
+export class {{service.className.replace(/Service$/, 'Store')}} {
+  {{each service.urlObjs urlObj}}
+  /** {{urlObj.summary}}{{urlObj.annotation}} */
+  async {{urlObj.methodName}}({{urlObj.params}}) {
+    const result = await {{firstLowerCase(service.className)}}.{{urlObj.methodName}}({{getParams(urlObj.parameters)}});
+    if (result.data.success) {
+      return result.data;
+    } else {
+      console.log(result.data.message);
+      return;
+    }
+  }
+  {{/each}}
+}
+{{/each}}
+
+

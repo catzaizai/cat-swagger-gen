@@ -1,0 +1,7 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "linterOptions": {
+    "include": ["src"],
+    "exclude": ["node_modules", "config"]
+  }
+}

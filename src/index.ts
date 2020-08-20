@@ -1,0 +1,1 @@
+export { default as SwgServiceGenerator} from './swagger-generator/SwgServiceGenerator';

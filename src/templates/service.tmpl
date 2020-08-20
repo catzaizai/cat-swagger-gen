@@ -1,0 +1,11 @@
+{{each references reference}}import {{reference.className}} from '{{reference.relativePath}}';
+{{/each}}
+
+class {{className}} extends BaseService {
+  {{each urlObjs urlObj}}{{set body = urlObj.body || (['post', 'put'].findIndex(x=>x===urlObj.method) > -1 ? '{}':'')}}
+  /** {{urlObj.summary}}{{urlObj.annotation}} */
+  public {{urlObj.methodName}} = ({{urlObj.params}}) => this.http.{{urlObj.method}}<{{@urlObj.result}}>(`{{urlObj.path}}`{{if body}}, {{body}}{{/if}}{{if urlObj.config}}, { {{@urlObj.config}} }{{/if}});
+  {{/each}}
+}
+
+export default new {{className}}();

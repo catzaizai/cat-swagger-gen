@@ -1,0 +1,8 @@
+{{each references reference}}import {{reference.className}} from '{{reference.relativePath}}';{{'\n'}}{{/each}}
+/** {{description || className}} */
+class {{@className}}{{@(isGeneric ? '<T = any>' : '')}} {
+{{each properties property}}  /** {{property.description}} */
+  {{property.name}}{{property.required ? '!' : '?'}}: {{@property.type}};
+{{/each}}}
+
+export default {{className}}
